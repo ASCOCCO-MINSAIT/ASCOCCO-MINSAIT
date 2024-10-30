@@ -69,7 +69,7 @@
         console.log("invoke sendData()");
 		const id = getIdFromQueryString();
         Genesys("command", "Database.set", { messaging: { customAttributes: { 
-            "summary": id
+            "conv_id": id
         }}});
     }
 

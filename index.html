@@ -105,77 +105,6 @@
             margin-top: 2rem;
         }
     </style>
-    <script type="text/javascript" charset="utf-8">
-
-        // Funzione per ottenere l'ID dalla query string
-        function getIdFromQueryString() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id') || 'N/A'; // Usa 'N/A' se l'ID non è presente
-        }
-
-
-        (function (g, e, n, es, ys) {
-            g['_genesysJs'] = e;
-            g[e] = g[e] || function () {
-                (g[e].q = g[e].q || []).push(arguments)
-            };
-            g[e].t = 1 * new Date();
-            g[e].c = es;
-            ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-        })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-            environment: 'prod-euc1',
-            deploymentId: 'd0c776cf-ae8e-4f0d-8053-e6166b714e20'
-        });
-
-        function toggleMessenger() {
-            Genesys("command", "Messenger.open", {},
-                function (o) {
-                    console.log("Messenger opened");
-                },
-                function (o) {
-                    Genesys("command", "Messenger.close");
-                    console.log("Messenger closed");
-                }
-            );
-        }
-
-        function sendData() {
-            console.log("invoke sendData()");
-            const id = getIdFromQueryString();
-            Genesys("command", "Database.set", {
-                messaging: {
-                    customAttributes: {
-                        "conv_id": id,
-                        "context.firstName": "Julian",
-                        "context.lastName": "Irons",
-                        "context.emailAddress": "gferri@minsait.com"
-
-                    }
-                }
-            });
-        }
-
-        function sendDataAndToggleMessenger() {
-            console.log("invoke sendDataAndToggleMessenger()");
-            sendData();
-            toggleMessenger();
-        }
-
-        window.onload = function () {
-
-            const id = getIdFromQueryString();
-
-            console.log("invoke sendDataAndToggleMessenger()");
-            sendData();
-            toggleMessenger();
-
-
-            Genesys("subscribe", "Messenger.opened", function () {
-                console.log("Event Messenger.opened");
-                sendData();
-            });
-        }
-    </script>
 </head>
 
 <body>
@@ -186,88 +115,88 @@
 
     <div class="container">
         <div class="product-list">
-            <!-- Prodotto 1 -->
+            <!-- Microonde 1 -->
             <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Laptop+Dell+XPS" alt="Laptop Dell XPS">
-                <h2>Notebook Dell XPS 15</h2>
-                <p>Display 4K, 16GB RAM, SSD 512GB</p>
-                <p class="price">€1.899</p>
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Samsung" alt="Microonde Samsung">
+                <h2>Microonde Samsung MW5000</h2>
+                <p>800W, 23L, Grill</p>
+                <p class="price">€139</p>
                 <button>Aggiungi al carrello</button>
             </div>
 
-            <!-- Prodotto 2 -->
+            <!-- Microonde 2 -->
             <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Monitor+LG+UltraWide"
-                    alt="Monitor LG UltraWide">
-                <h2>Monitor LG UltraWide</h2>
-                <p>34", risoluzione QHD</p>
-                <p class="price">€499</p>
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+LG" alt="Microonde LG">
+                <h2>Microonde LG NeoChef</h2>
+                <p>Smart Inverter, 25L</p>
+                <p class="price">€159</p>
                 <button>Aggiungi al carrello</button>
             </div>
 
-            <!-- Prodotto 3 -->
+            <!-- Microonde 3 -->
             <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Tastiera+Meccanica"
-                    alt="Tastiera Meccanica Logitech">
-                <h2>Tastiera Meccanica Logitech</h2>
-                <p>Switch Red, retroilluminata RGB</p>
-                <p class="price">€119</p>
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Whirlpool"
+                    alt="Microonde Whirlpool">
+                <h2>Microonde Whirlpool MWP303</h2>
+                <p>Grill, 30L, 900W</p>
+                <p class="price">€199</p>
                 <button>Aggiungi al carrello</button>
             </div>
 
-            <!-- Prodotto 4 -->
+            <!-- Microonde 4 -->
             <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Hard+Disk+WD" alt="Hard Disk Esterno WD">
-                <h2>Hard Disk Esterno WD</h2>
-                <p>2TB, USB 3.0</p>
-                <p class="price">€89</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Prodotto 5 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Mouse+Razer" alt="Mouse Wireless Razer">
-                <h2>Mouse Wireless Razer</h2>
-                <p>Design ergonomico, sensore 16K DPI</p>
-                <p class="price">€79</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Prodotto 6 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Cuffie+Sony" alt="Cuffie Sony WH-1000XM4">
-                <h2>Cuffie Sony WH-1000XM4</h2>
-                <p>Noise Cancelling, Bluetooth</p>
-                <p class="price">€299</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Prodotto 7 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Tablet+Samsung"
-                    alt="Tablet Samsung Galaxy Tab">
-                <h2>Tablet Samsung Galaxy Tab</h2>
-                <p>Display 10.5", 128GB</p>
-                <p class="price">€459</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Prodotto 8 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Stampante+HP" alt="Stampante HP InkJet">
-                <h2>Stampante HP InkJet</h2>
-                <p>Multifunzione, WiFi</p>
-                <p class="price">€99</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Prodotto 9 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Router+Netgear"
-                    alt="Router Netgear Nighthawk">
-                <h2>Router Netgear Nighthawk</h2>
-                <p>WiFi 6, velocità fino a 10Gbps</p>
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Panasonic"
+                    alt="Microonde Panasonic">
+                <h2>Microonde Panasonic NN-GD38HS</h2>
+                <p>Inverter, 23L, Grill</p>
                 <p class="price">€179</p>
+                <button>Aggiungi al carrello</button>
+            </div>
+
+            <!-- Microonde 5 -->
+            <div class="product-card">
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Bosch" alt="Microonde Bosch">
+                <h2>Microonde Bosch Serie 6</h2>
+                <p>800W, 21L</p>
+                <p class="price">€149</p>
+                <button>Aggiungi al carrello</button>
+            </div>
+
+            <!-- Microonde 6 -->
+            <div class="product-card">
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Sharp" alt="Microonde Sharp">
+                <h2>Microonde Sharp YC-MG81ES</h2>
+                <p>Grill, 28L</p>
+                <p class="price">€129</p>
+                <button>Aggiungi al carrello</button>
+            </div>
+
+            <!-- Microonde 7 -->
+            <div class="product-card">
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+DeLonghi"
+                    alt="Microonde DeLonghi">
+                <h2>Microonde DeLonghi MW30FS</h2>
+                <p>Display LED, 25L</p>
+                <p class="price">€169</p>
+                <button>Aggiungi al carrello</button>
+            </div>
+
+            <!-- Microonde 8 -->
+            <div class="product-card">
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Candy" alt="Microonde Candy">
+                <h2>Microonde Candy CMXG20</h2>
+                <p>20L, Grill</p>
+                <p class="price">€109</p>
+                <button>Aggiungi al carrello</button>
+            </div>
+
+            <!-- Microonde 9 -->
+            <div class="product-card">
+                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Electrolux"
+                    alt="Microonde Electrolux">
+                <h2>Microonde Electrolux EMS20400</h2>
+                <p>Defrost, 19L</p>
+                <p class="price">€99</p>
                 <button>Aggiungi al carrello</button>
             </div>
         </div>

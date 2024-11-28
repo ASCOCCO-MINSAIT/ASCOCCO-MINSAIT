@@ -105,6 +105,66 @@
             margin-top: 2rem;
         }
     </style>
+
+    <script type="text/javascript" charset="utf-8">
+        // Funzione per ottenere l'ID dalla query string
+        function getIdFromQueryString() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id') || 'N/A'; // Usa 'N/A' se l'ID non è presente
+        }
+        (function (g, e, n, es, ys) {
+            g['_genesysJs'] = e;
+            g[e] = g[e] || function () {
+                (g[e].q = g[e].q || []).push(arguments)
+            };
+            g[e].t = 1 * new Date();
+            g[e].c = es;
+            ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+        })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
+            environment: 'prod-euc1',
+            deploymentId: 'd0c776cf-ae8e-4f0d-8053-e6166b714e20'
+        });
+        function toggleMessenger() {
+            Genesys("command", "Messenger.open", {},
+                function (o) {
+                    console.log("Messenger opened");
+                },
+                function (o) {
+                    Genesys("command", "Messenger.close");
+                    console.log("Messenger closed");
+                }
+            );
+        }
+        function sendData() {
+            console.log("invoke sendData()");
+            const id = getIdFromQueryString();
+            Genesys("command", "Database.set", {
+                messaging: {
+                    customAttributes: {
+                        "conv_id": id,
+                        "context.firstName": "Julian",
+                        "context.lastName": "Irons",
+                        "context.emailAddress": "gferri@minsait.com"
+                    }
+                }
+            });
+        }
+        function sendDataAndToggleMessenger() {
+            console.log("invoke sendDataAndToggleMessenger()");
+            sendData();
+            toggleMessenger();
+        }
+        window.onload = function () {
+            const id = getIdFromQueryString();
+            console.log("invoke sendDataAndToggleMessenger()");
+            sendData();
+            toggleMessenger();
+            Genesys("subscribe", "Messenger.opened", function () {
+                console.log("Event Messenger.opened");
+                sendData();
+            });
+        }
+    </script>
 </head>
 
 <body>

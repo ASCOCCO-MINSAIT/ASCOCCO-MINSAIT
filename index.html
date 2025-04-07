@@ -181,7 +181,7 @@
         sendData();
       });
 
-      document.getElementById("portal-title").innerText = site === 'energy' ? 'Energy Federico Scocco' : 'Marketplace';
+      document.getElementById("portal-title").innerText = site === 'energy' ? 'Energy' : 'Marketplace';
 
       const container = document.querySelector(".product-list");
       container.innerHTML = site === 'energy' ? energyOffersHTML : marketplaceHTML;

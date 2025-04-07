@@ -2,269 +2,264 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indra Marketplace</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f8f9;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Indra Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8f9;
+    }
 
-        header {
-            background-color: #004c63;
-            color: #fff;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
+    header {
+      background-color: #004c63;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
 
-        header img {
-            width: 200px;
-            display: block;
-        }
+    header img {
+      width: 200px;
+      display: block;
+    }
 
-        header h1 {
-            font-size: 2rem;
-            margin: 0;
-            color: #ffffff;
-        }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #ffffff;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 2rem auto;
-        }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
 
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
 
-        .product-card {
-            background-color: #ffffff;
-            border: 1px solid #dde1e3;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            text-align: center;
-            transition: transform 0.2s;
-        }
+    .product-card {
+      background-color: #ffffff;
+      border: 1px solid #dde1e3;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.2s;
+    }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
 
-        .product-card img {
-            max-width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
+    .product-card img {
+      max-width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
 
-        .product-card h2 {
-            font-size: 1.2rem;
-            margin: 1rem 0 0.5rem;
-            color: #004c63;
-        }
+    .product-card h2 {
+      font-size: 1.2rem;
+      margin: 1rem 0 0.5rem;
+      color: #004c63;
+    }
 
-        .product-card p {
-            margin: 0.5rem 0;
-            color: #666;
-        }
+    .product-card p {
+      margin: 0.5rem 0;
+      color: #666;
+    }
 
-        .product-card .price {
-            font-size: 1.5rem;
-            color: #004c63;
-            margin: 0.5rem 0;
-        }
+    .product-card .price {
+      font-size: 1.5rem;
+      color: #004c63;
+      margin: 0.5rem 0;
+    }
 
-        .product-card button {
-            background-color: #004c63;
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-bottom: 1rem;
-        }
+    .product-card button {
+      background-color: #004c63;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
 
-        .product-card button:hover {
-            background-color: #003a4a;
-        }
+    .product-card button:hover {
+      background-color: #003a4a;
+    }
 
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #004c63;
-            color: #fff;
-            margin-top: 2rem;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #004c63;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
 
-    <script type="text/javascript" charset="utf-8">
-        // Funzione per ottenere l'ID dalla query string
-        function getIdFromQueryString() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('id') || 'N/A'; // Usa 'N/A' se l'ID non è presente
+  <script type="text/javascript">
+    function getParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    const site = getParam('site') === 'energy' ? 'energy' : 'marketplace';
+    const deploymentConfigs = {
+      marketplace: {
+        environment: 'prod-euc1',
+        deploymentId: 'd0c776cf-ae8e-4f0d-8053-e6166b714e20'
+      },
+      energy: {
+        environment: 'prod-euw2',
+        deploymentId: 'PLACEHOLDER-ENERGY-DEPLOYMENT-ID'
+      }
+    };
+
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments);
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = deploymentConfigs[site];
+      ys = document.createElement('script');
+      ys.async = 1;
+      ys.src = n;
+      ys.charset = 'utf-8';
+      document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js');
+
+    function getIdFromQueryString() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id') || 'N/A';
+    }
+
+    function toggleMessenger() {
+      Genesys("command", "Messenger.open", {},
+        function () {
+          console.log("Messenger opened");
+        },
+        function () {
+          Genesys("command", "Messenger.close");
+          console.log("Messenger closed");
         }
-        (function (g, e, n, es, ys) {
-            g['_genesysJs'] = e;
-            g[e] = g[e] || function () {
-                (g[e].q = g[e].q || []).push(arguments)
-            };
-            g[e].t = 1 * new Date();
-            g[e].c = es;
-            ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
-        })(window, 'Genesys', 'https://apps.mypurecloud.de/genesys-bootstrap/genesys.min.js', {
-            environment: 'prod-euc1',
-            deploymentId: 'd0c776cf-ae8e-4f0d-8053-e6166b714e20'
-        });
-        function toggleMessenger() {
-            Genesys("command", "Messenger.open", {},
-                function (o) {
-                    console.log("Messenger opened");
-                },
-                function (o) {
-                    Genesys("command", "Messenger.close");
-                    console.log("Messenger closed");
-                }
-            );
+      );
+    }
+
+    function sendData() {
+      const id = getIdFromQueryString();
+      Genesys("command", "Database.set", {
+        messaging: {
+          customAttributes: {
+            "conv_id": id,
+            "context.firstName": "Julian",
+            "context.lastName": "Irons",
+            "context.emailAddress": "gferri@minsait.com"
+          }
         }
-        function sendData() {
-            console.log("invoke sendData()");
-            const id = getIdFromQueryString();
-            Genesys("command", "Database.set", {
-                messaging: {
-                    customAttributes: {
-                        "conv_id": id,
-                        "context.firstName": "Julian",
-                        "context.lastName": "Irons",
-                        "context.emailAddress": "gferri@minsait.com"
-                    }
-                }
-            });
-        }
-        function sendDataAndToggleMessenger() {
-            console.log("invoke sendDataAndToggleMessenger()");
-            sendData();
-            toggleMessenger();
-        }
-        window.onload = function () {
-            const id = getIdFromQueryString();
-            console.log("invoke sendDataAndToggleMessenger()");
-            sendData();
-            toggleMessenger();
-            Genesys("subscribe", "Messenger.opened", function () {
-                console.log("Event Messenger.opened");
-                sendData();
-            });
-        }
-    </script>
+      });
+    }
+
+    function sendDataAndToggleMessenger() {
+      sendData();
+      toggleMessenger();
+    }
+
+    window.onload = function () {
+      sendData();
+      toggleMessenger();
+      Genesys("subscribe", "Messenger.opened", function () {
+        sendData();
+      });
+
+      document.getElementById("portal-title").innerText = site === 'energy' ? 'Energy' : 'Marketplace';
+
+      const container = document.querySelector(".product-list");
+      container.innerHTML = site === 'energy' ? energyOffersHTML : marketplaceHTML;
+    };
+
+    const marketplaceHTML = `
+      ${[{
+        name: "Samsung MW5000", desc: "800W, 23L, Grill", price: "€139"
+      }, {
+        name: "LG NeoChef", desc: "Smart Inverter, 25L", price: "€159"
+      }, {
+        name: "Whirlpool MWP303", desc: "Grill, 30L, 900W", price: "€199"
+      }, {
+        name: "Panasonic NN-GD38HS", desc: "Inverter, 23L, Grill", price: "€179"
+      }, {
+        name: "Bosch Serie 6", desc: "800W, 21L", price: "€149"
+      }, {
+        name: "Sharp YC-MG81ES", desc: "Grill, 28L", price: "€129"
+      }, {
+        name: "DeLonghi MW30FS", desc: "Display LED, 25L", price: "€169"
+      }, {
+        name: "Candy CMXG20", desc: "20L, Grill", price: "€109"
+      }, {
+        name: "Electrolux EMS20400", desc: "Defrost, 19L", price: "€99"
+      }].map(p => `
+        <div class="product-card">
+          <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+${encodeURIComponent(p.name)}" alt="Microonde ${p.name}">
+          <h2>Microonde ${p.name}</h2>
+          <p>${p.desc}</p>
+          <p class="price">${p.price}</p>
+          <button>Aggiungi al carrello</button>
+        </div>`).join("")}
+    `;
+
+    const energyOffersHTML = `
+      ${[{
+        name: "Luce Verde Indra", desc: "100% rinnovabile, prezzo fisso 12 mesi", price: "€0,20/kWh"
+      }, {
+        name: "Energia Smart", desc: "Fasce orarie personalizzate", price: "€0,18/kWh"
+      }, {
+        name: "Indra Flex", desc: "Prezzo variabile mensile", price: "€0,19/kWh"
+      }, {
+        name: "Indra Casa+", desc: "Gas + Luce in un'unica offerta", price: "da €0,17/kWh"
+      }, {
+        name: "Family Light", desc: "Per famiglie numerose", price: "€0,16/kWh"
+      }, {
+        name: "Luce Notte", desc: "Tariffa ridotta di notte", price: "€0,15/kWh"
+      }, {
+        name: "Business Power", desc: "Per piccole imprese", price: "€0,21/kWh"
+      }, {
+        name: "Eco Risparmio", desc: "Riduzioni per chi consuma meno", price: "da €0,14/kWh"
+      }, {
+        name: "Indra Solare", desc: "Per chi ha impianto fotovoltaico", price: "€0,13/kWh"
+      }].map(p => `
+        <div class="product-card">
+          <img src="https://dummyimage.com/300x200/cccccc/000000&text=${encodeURIComponent(p.name)}" alt="${p.name}">
+          <h2>${p.name}</h2>
+          <p>${p.desc}</p>
+          <p class="price">${p.price}</p>
+          <button>Scopri di più</button>
+        </div>`).join("")}
+    `;
+  </script>
 </head>
 
 <body>
-    <header>
-        <img src="AF_INDRA_LOG_NEG.png" alt="Logo Indra">
-        <h1>Marketplace</h1>
-    </header>
+  <header>
+    <img src="AF_INDRA_LOG_NEG.png" alt="Logo Indra" />
+    <h1 id="portal-title">Marketplace</h1>
+  </header>
 
-    <div class="container">
-        <div class="product-list">
-            <!-- Microonde 1 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Samsung" alt="Microonde Samsung">
-                <h2>Microonde Samsung MW5000</h2>
-                <p>800W, 23L, Grill</p>
-                <p class="price">€139</p>
-                <button>Aggiungi al carrello</button>
-            </div>
+  <div class="container">
+    <div class="product-list"></div>
+  </div>
 
-            <!-- Microonde 2 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+LG" alt="Microonde LG">
-                <h2>Microonde LG NeoChef</h2>
-                <p>Smart Inverter, 25L</p>
-                <p class="price">€159</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 3 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Whirlpool"
-                    alt="Microonde Whirlpool">
-                <h2>Microonde Whirlpool MWP303</h2>
-                <p>Grill, 30L, 900W</p>
-                <p class="price">€199</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 4 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Panasonic"
-                    alt="Microonde Panasonic">
-                <h2>Microonde Panasonic NN-GD38HS</h2>
-                <p>Inverter, 23L, Grill</p>
-                <p class="price">€179</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 5 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Bosch" alt="Microonde Bosch">
-                <h2>Microonde Bosch Serie 6</h2>
-                <p>800W, 21L</p>
-                <p class="price">€149</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 6 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Sharp" alt="Microonde Sharp">
-                <h2>Microonde Sharp YC-MG81ES</h2>
-                <p>Grill, 28L</p>
-                <p class="price">€129</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 7 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+DeLonghi"
-                    alt="Microonde DeLonghi">
-                <h2>Microonde DeLonghi MW30FS</h2>
-                <p>Display LED, 25L</p>
-                <p class="price">€169</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 8 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Candy" alt="Microonde Candy">
-                <h2>Microonde Candy CMXG20</h2>
-                <p>20L, Grill</p>
-                <p class="price">€109</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-
-            <!-- Microonde 9 -->
-            <div class="product-card">
-                <img src="https://dummyimage.com/300x200/cccccc/000000&text=Microonde+Electrolux"
-                    alt="Microonde Electrolux">
-                <h2>Microonde Electrolux EMS20400</h2>
-                <p>Defrost, 19L</p>
-                <p class="price">€99</p>
-                <button>Aggiungi al carrello</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2024 Indra Marketplace. Tutti i diritti riservati.</p>
-    </footer>
+  <footer>
+    <p>© 2024 Indra Portal. Tutti i diritti riservati.</p>
+  </footer>
 </body>
 
 </html>

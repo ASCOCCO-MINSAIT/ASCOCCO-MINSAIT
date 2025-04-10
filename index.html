@@ -104,6 +104,35 @@
       color: #fff;
       margin-top: 2rem;
     }
+    /* Energy theme overrides */
+body.energy-theme {
+  background-color: #f0fff4;
+}
+
+.energy-theme header {
+  background-color: #2e7d32; /* green */
+}
+
+.energy-theme .product-card {
+  background-color: #e8f5e9;
+  border-color: #c8e6c9;
+}
+
+.energy-theme .product-card h2 {
+  color: #2e7d32;
+}
+
+.energy-theme .product-card .price {
+  color: #1b5e20;
+}
+
+.energy-theme .product-card button {
+  background-color: #388e3c;
+}
+
+.energy-theme .product-card button:hover {
+  background-color: #2e7d32;
+}
   </style>
 
   <script type="text/javascript">
@@ -175,6 +204,7 @@
     }
 
     window.onload = function () {
+      if (site === 'energy') document.body.classList.add('energy-theme');
       sendData();
       toggleMessenger();
       Genesys("subscribe", "Messenger.opened", function () {
@@ -256,7 +286,7 @@
   }].map(p => `
     <div class="product-card">
       <img src="https://dummyimage.com/300x200/cccccc/000000&text=${encodeURIComponent(p.name)}" alt="${p.name}">
-      <h2>${p.name}</h2>
+      <h2>🌿 ${p.name}</h2>
       <p>${p.desc}</p>
       <p class="price">${p.price}</p>
       <button>Scopri di più</button>

@@ -120,7 +120,7 @@
       },
       energy: {
         environment: 'prod-euc1',
-        deploymentId: 'd0c776cf-ae8e-4f0d-8053-e6166b714e20'
+        deploymentId: 'de478c8d-4c9a-4d9a-aa1a-51337957e176'
       }
     };
 
@@ -217,33 +217,51 @@
     `;
 
     const energyOffersHTML = `
-      ${[{
-        name: "Luce Verde Indra", desc: "100% rinnovabile, prezzo fisso 12 mesi", price: "€0,20/kWh"
-      }, {
-        name: "Energia Smart", desc: "Fasce orarie personalizzate", price: "€0,18/kWh"
-      }, {
-        name: "Indra Flex", desc: "Prezzo variabile mensile", price: "€0,19/kWh"
-      }, {
-        name: "Indra Casa+", desc: "Gas + Luce in un'unica offerta", price: "da €0,17/kWh"
-      }, {
-        name: "Family Light", desc: "Per famiglie numerose", price: "€0,16/kWh"
-      }, {
-        name: "Luce Notte", desc: "Tariffa ridotta di notte", price: "€0,15/kWh"
-      }, {
-        name: "Business Power", desc: "Per piccole imprese", price: "€0,21/kWh"
-      }, {
-        name: "Eco Risparmio", desc: "Riduzioni per chi consuma meno", price: "da €0,14/kWh"
-      }, {
-        name: "Indra Solare", desc: "Per chi ha impianto fotovoltaico", price: "€0,13/kWh"
-      }].map(p => `
-        <div class="product-card">
-          <img src="https://dummyimage.com/300x200/cccccc/000000&text=${encodeURIComponent(p.name)}" alt="${p.name}">
-          <h2>${p.name}</h2>
-          <p>${p.desc}</p>
-          <p class="price">${p.price}</p>
-          <button>Scopri di più</button>
-        </div>`).join("")}
-    `;
+  ${[{
+    name: "Luce Verde Indra",
+    desc: "100% energia rinnovabile, prezzo fisso per 12 mesi",
+    price: "€0,20/kWh"
+  }, {
+    name: "Gas Sostenibile",
+    desc: "Compensazione CO₂, prezzo indicizzato mensile",
+    price: "€0,90/m³"
+  }, {
+    name: "Indra Duo Casa",
+    desc: "Luce + Gas in un'unica offerta, bolletta unica",
+    price: "da €0,18/kWh + €0,85/m³"
+  }, {
+    name: "Eco Flessibile",
+    desc: "Energia verde con prezzo variabile, aggiornato mensilmente",
+    price: "€0,19/kWh"
+  }, {
+    name: "Indra Gas Fisso",
+    desc: "Prezzo gas fisso per 24 mesi, senza sorprese",
+    price: "€0,88/m³"
+  }, {
+    name: "Indra Family Pack",
+    desc: "Luce e Gas con sconto famiglia, 100% rinnovabile",
+    price: "da €0,17/kWh + €0,83/m³"
+  }, {
+    name: "Luce Notturna",
+    desc: "Prezzo ridotto nelle ore serali e weekend",
+    price: "€0,15/kWh (ore ridotte)"
+  }, {
+    name: "Green Gas Plus",
+    desc: "Gas con certificazione di sostenibilità ambientale",
+    price: "€0,89/m³"
+  }, {
+    name: "Indra Solare Flex",
+    desc: "Tariffa luce dedicata a chi ha impianto fotovoltaico",
+    price: "€0,13/kWh"
+  }].map(p => `
+    <div class="product-card">
+      <img src="https://dummyimage.com/300x200/cccccc/000000&text=${encodeURIComponent(p.name)}" alt="${p.name}">
+      <h2>${p.name}</h2>
+      <p>${p.desc}</p>
+      <p class="price">${p.price}</p>
+      <button>Scopri di più</button>
+    </div>`).join("")}
+`;
   </script>
 </head>
 

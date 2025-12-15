@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>KPI Ticket</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 120px;
+      max-height: 120px;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Overlay controls */
+    .controls {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      display: flex;
+      gap: 4px;
+      z-index: 10;
+    }
+
+    .controls button {
+      width: 26px;
+      height: 26px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+      background: #2c3e50;
+      color: white;
+      opacity: 0.85;
+    }
+
+    .controls button:hover {
+      opacity: 1;
+    }
+
+    /* KPI */
+    .kpi-wrapper {
+      transform: scale(1);
+      transform-origin: center;
+      transition: transform 0.2s ease;
+    }
+
+    .kpi-container {
+      display: flex;
+      gap: 12px;
+    }
+
+    .kpi {
+      background: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      min-width: 130px;
+    }
+
+    .kpi h2 {
+      font-size: 12px;
+      margin: 0 0 4px 0;
+      color: #666;
+      font-weight: normal;
+    }
+
+    .kpi .value {
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 1;
+    }
+
+    .gestiti { color: #27ae60; }
+    .pending { color: #f39c12; }
+    .escalation { color: #c0392b; }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay buttons -->
+  <div class="controls">
+    <button onclick="resizeKpi(0.1)">+</button>
+    <button onclick="resizeKpi(-0.1)">−</button>
+  </div>
+
+  <!-- KPI centered -->
+  <div id="kpiWrapper" class="kpi-wrapper">
+    <div class="kpi-container">
+      <div class="kpi">
+        <h2>Ticket gestiti</h2>
+        <div id="gestiti" class="value gestiti">245</div>
+      </div>
+
+      <div class="kpi">
+        <h2>Ticket pending</h2>
+        <div id="pending" class="value pending">132</div>
+      </div>
+
+      <div class="kpi">
+        <h2>Escalation</h2>
+        <div id="escalation" class="value escalation">108</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let gestiti = 245;
+    let pending = 132;
+    let escalation = 108;
+    let scale = 1;
+
+    function resizeKpi(delta) {
+      scale += delta;
+      if (scale < 0.6) scale = 0.6;
+      if (scale > 1.6) scale = 1.6;
+      document.getElementById("kpiWrapper").style.transform = `scale(${scale})`;
+    }
+
+    setInterval(() => {
+      gestiti += Math.floor(Math.random() * 4) + 2;
+
+      pending += Math.floor(Math.random() * 5) - 2;
+      if (pending < 100) pending = 100;
+
+      escalation += Math.floor(Math.random() * 3) - 1;
+      if (escalation < 100) escalation = 100;
+
+      document.getElementById("gestiti").textContent = gestiti;
+      document.getElementById("pending").textContent = pending;
+      document.getElementById("escalation").textContent = escalation;
+    }, 5000);
+  </script>
+
+</body>
+</html>

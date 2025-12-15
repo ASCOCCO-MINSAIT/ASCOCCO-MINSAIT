@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>KPI Ticket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .kpi-container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .kpi {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      min-width: 200px;
+    }
+
+    .kpi h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .kpi .value {
+      font-size: 56px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+
+    .gestiti { color: #27ae60; }
+    .pending { color: #f39c12; }
+    .escalation { color: #c0392b; }
+  </style>
+</head>
+<body>
+
+  <div class="kpi-container">
+    <div class="kpi">
+      <h2>Ticket gestiti</h2>
+      <div id="gestiti" class="value gestiti">245</div>
+    </div>
+
+    <div class="kpi">
+      <h2>Ticket pending</h2>
+      <div id="pending" class="value pending">132</div>
+    </div>
+
+    <div class="kpi">
+      <h2>Escalation</h2>
+      <div id="escalation" class="value escalation">108</div>
+    </div>
+  </div>
+
+  <script>
+    let gestiti = 245;
+    let pending = 132;
+    let escalation = 108;
+
+    setInterval(() => {
+      // Ticket gestiti: cresce sempre
+      gestiti += Math.floor(Math.random() * 4) + 2; // +2 / +5
+
+      // Ticket pending: sale o scende leggermente
+      pending += Math.floor(Math.random() * 5) - 2; // -2 / +2
+      if (pending < 100) pending = 100;
+
+      // Escalation: varia poco
+      escalation += Math.floor(Math.random() * 3) - 1; // -1 / +1
+      if (escalation < 100) escalation = 100;
+
+      document.getElementById("gestiti").textContent = gestiti;
+      document.getElementById("pending").textContent = pending;
+      document.getElementById("escalation").textContent = escalation;
+    }, 5000);
+  </script>
+
+</body>
+</html>

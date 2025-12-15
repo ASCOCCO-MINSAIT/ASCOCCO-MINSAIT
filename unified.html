@@ -4,39 +4,47 @@
   <meta charset="UTF-8">
   <title>KPI Ticket</title>
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 120px;
+      max-height: 120px;
+      overflow: hidden;
       font-family: Arial, sans-serif;
       background: #f4f6f8;
+    }
+
+    body {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
 
     .kpi-container {
       display: flex;
-      gap: 40px;
+      gap: 12px; /* KPI più vicini */
     }
 
     .kpi {
       background: white;
-      padding: 30px 40px;
-      border-radius: 12px;
+      padding: 8px 14px; /* margini ridotti */
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      min-width: 200px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      min-width: 130px;
     }
 
     .kpi h2 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #555;
+      font-size: 12px;
+      margin: 0 0 4px 0;
+      color: #666;
+      font-weight: normal;
     }
 
     .kpi .value {
-      font-size: 56px;
+      font-size: 32px;
       font-weight: bold;
-      color: #2c3e50;
+      line-height: 1;
     }
 
     .gestiti { color: #27ae60; }
@@ -69,15 +77,12 @@
     let escalation = 108;
 
     setInterval(() => {
-      // Ticket gestiti: cresce sempre
-      gestiti += Math.floor(Math.random() * 4) + 2; // +2 / +5
+      gestiti += Math.floor(Math.random() * 4) + 2;
 
-      // Ticket pending: sale o scende leggermente
-      pending += Math.floor(Math.random() * 5) - 2; // -2 / +2
+      pending += Math.floor(Math.random() * 5) - 2;
       if (pending < 100) pending = 100;
 
-      // Escalation: varia poco
-      escalation += Math.floor(Math.random() * 3) - 1; // -1 / +1
+      escalation += Math.floor(Math.random() * 3) - 1;
       if (escalation < 100) escalation = 100;
 
       document.getElementById("gestiti").textContent = gestiti;
